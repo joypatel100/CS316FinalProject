@@ -1,3 +1,46 @@
-<md-button>
-  final project
-</md-button>
+<div>
+
+        <div class ="header"> Speech Compare </div>
+
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                <div>
+                        <p> Choose two speeches to compare! </p>
+                        <md-input-container>
+                                <label>Speech 1</label>
+                                <input ng-model="speeches.first">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Speech 2</label>
+                                <input ng-model="speeches.second">
+                        </md-input-container>
+                </div>
+                <div>
+                        <md-input-container>
+                                <label>Analytics</label>
+                                <md-select ng-model="speeches.analytics">
+                                        <md-option><em>None</em></md-option>
+                                        <md-option ng-repeat="option in main.analytics" ng-value="option" ng-disabled="$index === 1">
+                                                {{option}}
+                                        </md-option>
+                                </md-select>
+                        </md-input-container>
+
+                </div>
+                <div>
+                        <md-button type="submit" ng-click="main.submit()">Compare</md-button>
+                </div>
+
+        </md-content>
+
+        <div class="basicDisplay" ng-show="main.showBasic">
+                <h3>Results of Basic Analysis</h3>
+                <p >Speech: {{main.speech1}}</p>
+                <p >Speaker: {{main.speaker1}}</p>
+                <p >Speech: {{main.speech2}}</p>
+                <p >Speaker: {{main.speaker2}}</p>
+                <p >Score: {{main.association}}</p>
+
+        </div>
+
+</div>
