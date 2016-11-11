@@ -5,6 +5,7 @@ import argparse
 import os
 import psycopg2
 import psycopg2.extras
+from rest_models import DBUtil, District, Position, Speaker, Speech, SpeechAssociation, Users
 
 class DBApi(Api):
     pass
@@ -18,6 +19,14 @@ def run_app():
     cors = CORS(app)
     app.config['CORS_HEADERS'] = 'Content-Type'
     api = DBApi(app)
+
+    dbutil = DBUtil()
+    api.add_resource(District, '/district', resource_class_args=(dbutil,))
+    api.add_resource(Position, '/position', resource_class_args=(dbutil,))
+    api.add_resource(Speaker, '/speaker', resource_class_args=(dbutil,))
+    api.add_resource(Speech, '/speech', resource_class_args=(dbutil,))
+    api.add_resource(SpeechAssociation, '/speechassociation', resource_class_args=(dbutil,))
+    api.add_resource(Users, '/users', resource_class_args=(dbutil,))
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', type=int, required=True)
