@@ -9,7 +9,7 @@ angular
                 service.getBasic = function(speeches) {
                         var deferred = $q.defer();
                         console.log(speeches);
-                        $http.get('/database/rest_models/speechassociation', {'speech_id1': speeches.first, 'speech_id2': speeches.second}).success(function(data){
+                        $http.get('/database/rest_models/speechassociation/get', {'speech_id1': speeches.first, 'speech_id2': speeches.second}).success(function(data){
                                 deferred.resolve(data);
                                 console.log(data);
                         }).error(function(data, status, headers, config){
