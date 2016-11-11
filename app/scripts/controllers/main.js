@@ -23,24 +23,19 @@ angular.module('projectApp')
 
         // take the form data and create an API request
         self.submit = function() {
+                self.speech1 = $scope.speeches.first;
+                self.speech2 = $scope.speeches.second;
+
                 if ($scope.speeches.analytics === 'Basic') {
                         CompareService.getBasic($scope.speeches).then(function(data){
-                                if (data.success) {
-                                        self.displayBasic(data.data);
-                                } else {
-                                        // @TODO
-                                }                    
+                                        self.displayBasic(data.data);       
                         });
                 } 
         };
 
         // "Basic" analytics -- displays the plain text comparison score
         self.displayBasic = function(data) {
-                self.speech1 = data.speech1;
-                self.speaker1 = data.speaker1;
-                self.speech2 = data.speech2;
-                self.speaker2 = data.speaker2;
-                self.association = data.association;
+                self.score = data.score;
                 self.showBasic = true;
                 console.log($scope.basic);
         };
