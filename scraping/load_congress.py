@@ -3,8 +3,9 @@ from govtrack.api import GovTrackClient
 client = GovTrackClient()
 roles = client.role({"current": "true", "limit": "600"})
 from datetime import datetime
+import config
 
-conn = psycopg2.connect(dbname='CS316FinalProjectDB', user='postgres', port=5432, password='abcde12345', host='104.196.18.176')
+conn = psycopg2.connect(dbname=config.dbname, user=config.user, port=config.port, password=config.password, host=config.host)
 cur = conn.cursor()
 for obj in roles['objects']:
     person = obj['person']
