@@ -10,3 +10,7 @@ Run `grunt` for building and `grunt serve` for preview (running "npm install" in
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+## Scraping
+
+The code to scrape the data for this project can be found in the "scraping" directory. A config file with database information and passwords is also needed (not in repo)
