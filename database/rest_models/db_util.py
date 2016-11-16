@@ -168,36 +168,31 @@ class DBResource(Resource):
 class DBUtil(object):
 
     def __init__(self):
-        self._init_conn()
+        self.connection_uri = os.environ['POSTGRES_CONN_URI_CS316']
         return
 
-    def _init_conn(self):
-        self.conn = psycopg2.connect(os.environ['POSTGRES_CONN_URI_CS316'])
-        return
-
-    def _rollback_and_close(self, cur):
+    def _rollback_and_close(self, conn, cur):
         try:
-            self.conn.rollback()
+            conn.rollback()
             cur.close()
-            self.conn.close()
+            conn.close()
         except Exception as e:
             return
 
     def query(self, sql, sql_params=(), fetch=True):
+        conn = None
         ret = None
-        retries = 2
-        for i in range(retries):
-            cur = None
-            try:
-                cur = self.conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-                cur.execute(sql, sql_params)
-                if fetch:
-                    ret = cur.fetchall()
-                self.conn.commit()
-                cur.close()
-                return True, ret
-            except Exception as e:
-                self._rollback_and_close(cur)
-            self._init_conn()
-            if i == retries-1:
-                return False, e
+        cur = None
+        try:
+            conn = psycopg2.connect(self.connection_uri)
+            cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+            cur.execute(sql, sql_params)
+            if fetch:
+                ret = cur.fetchall()
+            conn.commit()
+            cur.close()
+            conn.close()
+            return True, ret
+        except Exception as e:
+            self._rollback_and_close(conn, cur)
+            return False, e

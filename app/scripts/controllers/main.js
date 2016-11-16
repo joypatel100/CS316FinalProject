@@ -27,7 +27,7 @@ angular.module('projectApp')
       self.speech2 = $scope.speeches.second;
 
       if ($scope.speeches.analytics === 'Basic') {
-        DBService.getBasic($scope.speeches).then(function(promise) {
+        DBService.getSpeechAssociation($scope.speeches).then(function(promise) {
           console.log(promise);
           self.displayBasic(promise.data);
         });

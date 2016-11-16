@@ -1,0 +1,15 @@
+<md-content layout-padding layout-align="center-center" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+  <div layout="column">
+    <md-input-container>
+      <label>Username</label>
+      <input ng-model="signin.username" />
+    </md-input-container>
+    <md-input-container>
+      <label>Password</label>
+      <input ng-model="signin.password" />
+    </md-input-container>
+    <md-button class="md-primary" ng-click="signinClick()">
+      Sign In
+    </md-button>
+  </div>
+</md-content>
