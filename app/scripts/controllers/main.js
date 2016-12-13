@@ -8,38 +8,41 @@
  * Controller of the projectApp
  */
 angular.module('projectApp')
-  .controller('MainCtrl', ['$scope', 'DBService', function($scope, DBService) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+        .controller('MainCtrl', ['$scope', 'DBService', function($scope, DBService) {
+                this.awesomeThings = [
+                        'HTML5 Boilerplate',
+                        'AngularJS',
+                        'Karma'
+                ];
 
-    var self = this;
-    self.showBasic = false;
+                var self = this;
+                self.showSearch = false;
 
-    // options for the types of analytics offered
-    self.analytics = ['Basic'];
+                self.search = function() {
+                        self.test = {};
+                        // just for testing purposes
+                        self.searchResults = [
+                                {'id':1, 'speaker': 'me', 'keywords': 'blah', 'date': 'now', 'party': 'repub' }, 
+                                {'id':2, 'speaker': 'me', 'keywords': 'blah', 'date': 'today', 'party': 'dem' }
+                        ]
 
-    // take the form data and create an API request
-    self.submit = function() {
-      self.speech1 = $scope.speeches.first;
-      self.speech2 = $scope.speeches.second;
+                        self.displayResults(self.searchResults);
+                        // end testing block
+                        //
 
-      if ($scope.speeches.analytics === 'Basic') {
-        DBService.getSpeechAssociation($scope.speeches).then(function(promise) {
-          console.log(promise);
-          self.displayBasic(promise.data);
-        });
-      }
-    };
+                        DBService.getSearchResults(self.search).then(function(promise) {
+                                self.showSearch = true;
+                                console.log(promise);
+                                self.displayResults(promise.data);
+                        });
+                };
 
-    // "Basic" analytics -- displays the plain text comparison score
-    self.displayBasic = function(data) {
-      self.score = data.score;
-      self.showBasic = true;
-      console.log($scope.basic);
-    };
+                // "Basic" analytics -- displays the plain text comparison score
 
+                self.displayResults = function(data) {
+                        self.searchResults = data;
+                        self.showSearch = true;
+                        console.log(self.searchResults);
+                };
 
-  }]);
+        }]);

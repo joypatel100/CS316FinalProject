@@ -46,6 +46,21 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/add', {
+        templateUrl: 'views/add.html',
+        controller: 'AddCtrl',
+        controllerAs: 'add'
+      })
+      .when('/speech/:id', {
+        templateUrl: 'views/speech.html',
+        controller: 'SpeechCtrl',
+        controllerAs: 'speech'
+      })
+      .when('/analytics', {
+        templateUrl: 'views/analytics.html',
+        controller: 'AnalyticsCtrl',
+        controllerAs: 'analytics'
+      })
       .otherwise({
         redirectTo: '/'
       });

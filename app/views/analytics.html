@@ -1,0 +1,22 @@
+<div>
+        <h2> Analytics </h2>
+        <div>
+                <p> Choose a visualization option </p>
+                <md-input-container>
+                        <label>Options</label>
+                        <md-select ng-model="analytics.selection">
+                                <md-option><em>None</em></md-option>
+                                <md-option ng-repeat="option in analytics.options" ng-value="option" >
+                                        {{option.name}}
+                                </md-option>
+                        </md-select>
+                </md-input-container>
+                <div>
+                        <h5>{{analytics.selection.name}}</h5>
+                        <p>{{analytics.selection.description}}</p>
+                </div>
+        </div>
+        <div>
+                <p>Stick visualizations here</p>
+        </div>
+</div>

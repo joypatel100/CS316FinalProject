@@ -1,0 +1,41 @@
+<div>
+
+        <div class="header"> Add Your Own Speech!</div>
+
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                <form name="speechForm">
+                        <p> Search Speeches </p>
+                        <md-input-container>
+                                <label>Speaker</label>
+                                <input ng-model="speech.speaker">
+                        </md-input-container>
+
+                        <md-input-container>
+                                <label>Date</label>
+                                <input ng-model="speech.date" type="date">
+                        </md-input-container>
+                        <md-input-container>
+                                <label>Speaker's Party</label>
+                                <input ng-model="speech.party">
+                        </md-input-container>
+                        <md-input-container>
+                                <label>Speech Content</label>
+                                <input ng-model="speech.speechcontent">
+                        </md-input-container>
+
+                </form>
+                <div>
+                        <md-button type="submit" ng-click="add.addSpeech()">Find speeches</md-button>
+                </div>
+
+        </md-content>
+
+        <div class="basicDisplay" ng-show="add.displaySuccessMessage">
+                <p>Speech successfully uploaded!</p>
+                <div>
+                        <md-button type="submit" ng-click="add.reset()">Add Another Speech</md-button>
+                </div>
+
+        </div>
+
+</div>

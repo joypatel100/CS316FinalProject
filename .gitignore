@@ -73,3 +73,6 @@ target/
 
 #config
 config.py
+
+#swap files
+*.swp
