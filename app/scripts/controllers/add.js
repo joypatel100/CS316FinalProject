@@ -15,24 +15,28 @@ angular.module('projectApp')
                         'Karma'
                 ];
                 var self = this;
-                // just for testing purposes
+                self.addButton = true;
                 self.addSpeech = function() {
-                        self.data = {'speaker': 'donald', 'party': 'Republican', 'date': 'Today', 'text': 'hi there!', 'speechid': '1'};
+                        // just for testing
                         self.successMessage();
-                        DBService.addSpeech(self.data).then(function(promise) {
+                        //
+                        DBService.addSpeech(self.speech).then(function(promise) {
                                 console.log(promise);
                                 self.successMessage();
                         });
                 }
 
                 self.successMessage = function() {
-                        self.displaySuccessMessage = true; 
+                        console.log(self.speech);
+                        self.displaySuccessMessage = true;
+                        self.addButton = false;
                 };
 
                 self.reset = function() {
                         self.displaySuccessMessage = false;
-                        console.log($scope.speechForm);
-                        $scope.speech = {};
+                        console.log(self.speech);
+                        self.speech = {};
+                        self.addButton = true;
                         //$scope.speechForm.$setPristine();
                         //$scope.speechForm.$setUntouched();
                 }

@@ -1,6 +1,11 @@
-<div>
+<div style="background-color: lightskyblue; height:40px; z-index:100; width:100%; opacity: 1;">
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; font-size:25px; margin-left:15px;" ng-href="#/">Congress Talking Points </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/main">Search</a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/analytics">Analytics | </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/add">Add | </a></span>
+</div>
 
-        <div class="header"> Congress Talking Points </div>
+<div>
 
         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
                 <div>
@@ -24,18 +29,23 @@
                                 <label>Speech ID</label>
                                 <input ng-model="search.speechid">
                         </md-input-container>
+                        <div>
+                                <md-button type="submit" ng-click="main.search()">Find speeches</md-button>
+                        </div>
 
-                </div>
-                <div>
-                        <md-button type="submit" ng-click="main.search()">Find speeches</md-button>
                 </div>
 
         </md-content>
 
-        <div class="basicDisplay" ng-show="main.showSearch">
+        <div class="basicDisplay" ng-show="main.showSearch" style="margin-left: 20px">
                 <h3>Search Results</h3>
                 <div ng-repeat="result in main.searchResults" ng-value="result"> 
-                        <div><a ng-href="#/speech/{{result.id}}">{{result}}><a></div>
+                        <div style="border-left: 2px solid black; padding-left: 1em; background-color: aliceblue">
+                                <a ng-href="#/speech/{{result.id}}" style="text-decoration:none; color:black">
+                                        <p style="font-weight:bold;">ID: {{result.id}}<p>
+                                        <p>Speaker: {{result.speaker}}, Affiliation: {{result.party}}, Date: {{result.date}}, Keywords: {{result.keywords}}<p>
+                                <a>
+                        </div>
                 <div>
         </div>
 

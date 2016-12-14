@@ -1,9 +1,15 @@
-<div>
+<div style="background-color: lightskyblue; height:40px; z-index:100; width:100%; opacity: 1;">
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; font-size:25px; margin-left:15px;" ng-href="#/">Congress Talking Points </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/main">Search</a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/analytics">Analytics | </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/add">Add | </a></span>
+</div>
+
+<div style="margin-left: 20px">
         <h2> Analytics </h2>
         <div>
-                <p> Choose a visualization option </p>
                 <md-input-container>
-                        <label>Options</label>
+                        <label>Visualization Options</label>
                         <md-select ng-model="analytics.selection">
                                 <md-option><em>None</em></md-option>
                                 <md-option ng-repeat="option in analytics.options" ng-value="option" >
@@ -13,7 +19,7 @@
                 </md-input-container>
                 <div>
                         <h5>{{analytics.selection.name}}</h5>
-                        <p>{{analytics.selection.description}}</p>
+                        <p  style="border-left: 2px solid black; padding-left: 1em">{{analytics.selection.description}}</p>
                 </div>
         </div>
         <div>

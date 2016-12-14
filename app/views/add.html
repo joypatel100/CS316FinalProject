@@ -1,37 +1,49 @@
-<div>
+<div style="background-color: lightskyblue; height:40px; z-index:100; width:100%; opacity: 1;">
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; font-size:25px; margin-left:15px;" ng-href="#/">Congress Talking Points </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/main">Search</a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/analytics">Analytics | </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/add">Add | </a></span>
+</div>
 
-        <div class="header"> Add Your Own Speech!</div>
+<div style="margin-left: 20px;">
+
+        <p style="font-size: 25px; font-weight: bold"> Speech Submission Form</p>
 
         <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
                 <form name="speechForm">
-                        <p> Search Speeches </p>
+                        <div>
                         <md-input-container>
                                 <label>Speaker</label>
-                                <input ng-model="speech.speaker">
+                                <input ng-model="add.speech.speaker">
                         </md-input-container>
-
+                        </div>
+                        <div>
                         <md-input-container>
                                 <label>Date</label>
-                                <input ng-model="speech.date" type="date">
+                                <input ng-model="add.speech.date" type="date">
                         </md-input-container>
+                        </div>
+                        <div>
                         <md-input-container>
                                 <label>Speaker's Party</label>
-                                <input ng-model="speech.party">
+                                <input ng-model="add.speech.party">
                         </md-input-container>
-                        <md-input-container>
-                                <label>Speech Content</label>
-                                <input ng-model="speech.speechcontent">
-                        </md-input-container>
+                        </div>
+                        <div>
+                                <md-input-container style="width: 90%">
+                                        <label>Speech Content</label>
+                                        <textarea rows="10" ng-model="add.speech.speechcontent"/>
+                                </md-input-container>
+                        </div>
+                        <div>
+                                <md-button type="submit" ng-click="add.addSpeech()" ng-if="add.addButton">Add speech</md-button>
+                        </div>
 
                 </form>
-                <div>
-                        <md-button type="submit" ng-click="add.addSpeech()">Find speeches</md-button>
-                </div>
-
         </md-content>
 
         <div class="basicDisplay" ng-show="add.displaySuccessMessage">
-                <p>Speech successfully uploaded!</p>
+                <p>Your speech has been successfully uploaded</p>
                 <div>
                         <md-button type="submit" ng-click="add.reset()">Add Another Speech</md-button>
                 </div>
@@ -39,3 +51,4 @@
         </div>
 
 </div>
+
