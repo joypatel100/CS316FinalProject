@@ -7,3 +7,4 @@ from speechassociation import SpeechAssociation
 from users import Users
 from info import Info
 from search import Search
+from score import Score

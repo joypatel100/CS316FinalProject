@@ -5,7 +5,7 @@ import argparse
 import os
 import psycopg2
 import psycopg2.extras
-from rest_models import DBUtil, District, Position, Speaker, Speech, SpeechAssociation, Users, Info, Search
+from rest_models import DBUtil, District, Position, Speaker, Speech, SpeechAssociation, Users, Info, Search, Score
 
 class DBApi(Api):
     pass
@@ -29,6 +29,7 @@ def run_app():
     api.add_resource(Users, '/users', resource_class_args=(dbutil,))
     api.add_resource(Info, '/info', resource_class_args=(dbutil,))
     api.add_resource(Search, '/search', resource_class_args=(dbutil,))
+    api.add_resource(Score, '/score', resource_class_args=(dbutil,))
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', type=int, required=True)
