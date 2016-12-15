@@ -42,9 +42,12 @@
                 <div ng-if="main.searchResults.length===0"><p>No results found</p></div>
                 <div ng-repeat="result in main.searchResults" ng-value="result">
                         <div style="border-left: 2px solid black; padding-left: 1em; background-color: aliceblue">
-                                <a ng-href="#/speech/{{result.id}}" style="text-decoration:none; color:black">
-                                        <p style="font-weight:bold;">ID: {{result.id}}<p>
-                                        <p>Speaker: {{result.speaker}}, Affiliation: {{result.party}}, Date: {{result.date}}, Keywords: {{result.keywords}}<p>
+                                <a ng-href="#/speech/{{result.speech_id}}" style="text-decoration:none; color:black">
+                                        <p style="font-weight:bold;">ID: {{result.speech_id}}<p>
+                                        <div><p>Speaker: {{result.speaker_name}}</p> </div>
+                                        <p>Affiliation: {{result.party_name}}</p> 
+                                        <p>Date: {{result.date_said}}</p> 
+                                        <p>Keywords: {{result.keywords.join(', ')}}</p>
                                 <a>
                         </div>
                 <div>

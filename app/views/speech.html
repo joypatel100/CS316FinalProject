@@ -2,17 +2,16 @@
                         <span><a style="text-decoration:none; color:white; font-weight:bold; font-size:25px; margin-left:15px;" ng-href="#/">Congress Talking Points </a></span>
                         <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/main">Search</a></span>
                         <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/analytics">Analytics | </a></span>
-                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/add">Add | </a></span>
 </div>
 
 <div style="margin-left: 20px"> 
-        <h3 style="font-size: 15px">{{speech.data.speaker}}</h3>
-        <p style="font-weight: bold; font-size: 13px">Speech ID: {{speech.data.speechid}}</p>
-        <p style="font-size: 15px; border-left: 2px solid black; padding-left: 1em">Party Affiliation: {{speech.data.party}}</p>
+        <h3 style="font-size: 15px">{{speech.data.speaker_name}}</h3>
+        <p style="font-weight: bold; font-size: 13px">Speech ID: {{speech.id}}</p>
+        <p style="font-size: 15px; border-left: 2px solid black; padding-left: 1em">Party Affiliation: {{speech.data.party_name}}</p>
         <p style="font-size: 15px; border-left: 2px solid black; padding-left: 1em">Sentiment Score: {{speech.data.sentiment}}</p>
         <p style="font-size: 15px; border-left: 2px solid black; padding-left: 1em">Keywords: {{speech.data.keywords}}</p>
-        <p style="font-weight: bold; font-size: 13px">{{speech.data.date}}</p>
-        <p style="font-size: 12px; background-color: AliceBlue">{{speech.data.text}}</p>
+        <p style="font-weight: bold; font-size: 13px">{{speech.data.date_said}}</p>
+        <p style="font-size: 12px; background-color: AliceBlue">{{speech.data.speech_text}}</p>
 
 </div>
 
