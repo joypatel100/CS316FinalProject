@@ -11,22 +11,22 @@
                         <p> Search Speeches </p>
                         <md-input-container>
                                 <label>Speaker</label>
-                                <input ng-model="search.speaker">
+                                <input ng-model="main.query.speaker">
                         </md-input-container>
 
                         <md-input-container>
                                 <label>Key Words</label>
-                                <input ng-model="search.keywords">
+                                <input ng-model="main.query.keywords">
                         </md-input-container>
                         <md-input-container>
                                 <label>Speaker's Party</label>
-                                <input ng-model="search.party">
+                                <input ng-model="main.query.party">
                         </md-input-container>
 
                         <p> ...or just enter the speech ID </p>
                         <md-input-container>
                                 <label>Speech ID</label>
-                                <input ng-model="search.speechid">
+                                <input ng-model="main.query.speechid">
                         </md-input-container>
                         <div>
                                 <md-button type="submit" ng-click="main.search()">Find speeches</md-button>
@@ -38,7 +38,9 @@
 
         <div class="basicDisplay" ng-show="main.showSearch" style="margin-left: 20px">
                 <h3>Search Results</h3>
-                <div ng-repeat="result in main.searchResults" ng-value="result"> 
+                <div ng-if="main.noParams"><p>Please fill out at least one of the parameters </p></div>
+                <div ng-if="main.searchResults.length===0"><p>No results found</p></div>
+                <div ng-repeat="result in main.searchResults" ng-value="result">
                         <div style="border-left: 2px solid black; padding-left: 1em; background-color: aliceblue">
                                 <a ng-href="#/speech/{{result.id}}" style="text-decoration:none; color:black">
                                         <p style="font-weight:bold;">ID: {{result.id}}<p>
