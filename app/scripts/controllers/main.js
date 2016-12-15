@@ -8,41 +8,50 @@
  * Controller of the projectApp
  */
 angular.module('projectApp')
-        .controller('MainCtrl', ['$scope', 'DBService', function($scope, DBService) {
-                this.awesomeThings = [
-                        'HTML5 Boilerplate',
-                        'AngularJS',
-                        'Karma'
-                ];
+  .controller('MainCtrl', ['$scope', 'DBService', function($scope, DBService) {
+    this.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
 
-                var self = this;
-                self.showSearch = false;
+    var self = this;
+    self.showSearch = false;
 
-                self.search = function() {
-                        self.test = {};
-                        // just for testing purposes
-                        self.searchResults = [
-                                {'id':1, 'speaker': 'me', 'keywords': 'blah', 'date': 'now', 'party': 'repub' }, 
-                                {'id':2, 'speaker': 'me', 'keywords': 'blah', 'date': 'today', 'party': 'dem' }
-                        ]
+    self.search = function() {
+      self.test = {};
+      // just for testing purposes
+      self.searchResults = [{
+        'id': 1,
+        'speaker': 'me',
+        'keywords': 'blah',
+        'date': 'now',
+        'party': 'repub'
+      }, {
+        'id': 2,
+        'speaker': 'me',
+        'keywords': 'blah',
+        'date': 'today',
+        'party': 'dem'
+      }]
 
-                        self.displayResults(self.searchResults);
-                        // end testing block
-                        //
+      self.displayResults(self.searchResults);
+      // end testing block
+      //
 
-                        DBService.getSearchResults(self.search).then(function(promise) {
-                                self.showSearch = true;
-                                console.log(promise);
-                                self.displayResults(promise.data);
-                        });
-                };
+      DBService.getSearchResults(self.search).then(function(promise) {
+        self.showSearch = true;
+        console.log(promise);
+        self.displayResults(promise.data);
+      });
+    };
 
-                // "Basic" analytics -- displays the plain text comparison score
+    // "Basic" analytics -- displays the plain text comparison score
 
-                self.displayResults = function(data) {
-                        self.searchResults = data;
-                        self.showSearch = true;
-                        console.log(self.searchResults);
-                };
+    self.displayResults = function(data) {
+      self.searchResults = data;
+      self.showSearch = true;
+      console.log(self.searchResults);
+    };
 
-        }]);
+  }]);
