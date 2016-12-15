@@ -4,11 +4,21 @@ After fetching the complete speeches of user's choice from our database, we want
 
 For each speech, we parse it and return the word counts. We also display the keywords of the speech by extracting all noun phrases and returning the top 3 noun phrases after removing the stopwords. We can also display those keywords in context by returning the word and the three words either side using KWIC method. 
 
-Another important analysis we want to include is sentiment analysis. "textblob" has built-in function that allows us to perform sentiment analysis directly. We can specify either PatternAnalyzer (based on the pattern library) or NaiveBayesAnalyzer (an NLTK classifier). In addition, Thomas et al (2006) suggests an alternative way to evaluate formal Congressional speeches using Support Vector Machines(SVM). We could potentially implement their method if time permits. 
+Another important analysis we want to include is sentiment analysis. "textblob" has built-in function that allows us to perform sentiment analysis directly. It outputs two scores: polarity and subjectivity. The polarity score is a float within the range [-1.0, 1.0]. The subjectivity is a float within the range [0.0, 1.0] where 0.0 is very objective and 1.0 is very subjective. In addition, Thomas et al (2006) suggests an alternative way to evaluate formal Congressional speeches using Support Vector Machines(SVM). We could potentially implement their method if time permits. 
 
-Last but not least, we want to output a "proximity score" that shows the proximity of two speeches. Multiple metrics would go into the "similarity score" calculation: 1. Jaccard similarity 2. Sentiment analysis score. Jaccard similarity coefficient measures the similarity and diversity of sample sets after stopword removal. NLTK provides toolknit to compute Jaccard similarity. After getting the Jaccard similarity score and sentiment analysis scores from both speeches, we could output a "proximity score" ranged from 0 to 1, with 1 being identical and 0 being irrelavant. 
+Last but not least, we want to output a "distance score" that shows the semantic similarity of two speeches. There are multiple distance metrics available in NLTK package including edit distance, jaccard distance and masi distance. As metrics, they must satisfy the following three requirements:
+
+1. d(a, a) = 0
+2. d(a, b) >= 0
+3. d(a, c) <= d(a, b) + d(b, c)
+
+
+We decided to go with jaccard distance in represent the "distance score". Jaccard similarity coefficient measures the similarity and diversity of sample sets after stopword removal. It puts words in speeches into sets, and it is calculated using (|s1.union(s2)| - |s1.intersection(s2)|)/|s1.union(s2)|
+
+The "distance score" ranges from 0 to 1, with 0 being identical and 1 being irrelavant. 
 
 References:
 https://textblob.readthedocs.io/en/dev/
 http://www.cs.cornell.edu/home/llee/papers/tpl-convote.dec06.pdf
 http://bommaritollc.com/2014/06/12/fuzzy-match-sentences-python/
+http://www.nltk.org/_modules/nltk/metrics/distance.html

@@ -1,44 +1,52 @@
+<div style="background-color: lightskyblue; height:40px; z-index:100; width:100%; opacity: 1;">
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; font-size:25px; margin-left:15px;" ng-href="#/">Congress Talking Points </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/main">Search</a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/analytics">Analytics | </a></span>
+                        <span><a style="text-decoration:none; color:white; font-weight:bold; float: right; margin-right:7px" ng-href="#/add">Add | </a></span>
+</div>
+
 <div>
 
-  <div class="header"> Speech Compare </div>
+        <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
+                <div>
+                        <p> Search Speeches </p>
+                        <md-input-container>
+                                <label>Speaker</label>
+                                <input ng-model="search.speaker">
+                        </md-input-container>
 
-  <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding>
-    <div>
-      <p> Choose two speeches to compare! </p>
-      <md-input-container>
-        <label>Speech 1</label>
-        <input ng-model="speeches.first">
-      </md-input-container>
+                        <md-input-container>
+                                <label>Key Words</label>
+                                <input ng-model="search.keywords">
+                        </md-input-container>
+                        <md-input-container>
+                                <label>Speaker's Party</label>
+                                <input ng-model="search.party">
+                        </md-input-container>
 
-      <md-input-container>
-        <label>Speech 2</label>
-        <input ng-model="speeches.second">
-      </md-input-container>
-    </div>
-    <div>
-      <md-input-container>
-        <label>Analytics</label>
-        <md-select ng-model="speeches.analytics">
-          <md-option><em>None</em></md-option>
-          <md-option ng-repeat="option in main.analytics" ng-value="option" ng-disabled="$index === 1">
-            {{option}}
-          </md-option>
-        </md-select>
-      </md-input-container>
+                        <p> ...or just enter the speech ID </p>
+                        <md-input-container>
+                                <label>Speech ID</label>
+                                <input ng-model="search.speechid">
+                        </md-input-container>
+                        <div>
+                                <md-button type="submit" ng-click="main.search()">Find speeches</md-button>
+                        </div>
 
-    </div>
-    <div>
-      <md-button type="submit" ng-click="main.submit()">Compare</md-button>
-    </div>
+                </div>
 
-  </md-content>
+        </md-content>
 
-  <div class="basicDisplay" ng-show="main.showBasic">
-    <h3>Results of Basic Analysis</h3>
-    <p>Speech: {{main.speech1}}</p>
-    <p>Speech: {{main.speech2}}</p>
-    <p>Score: {{main.score}}</p>
-
-  </div>
+        <div class="basicDisplay" ng-show="main.showSearch" style="margin-left: 20px">
+                <h3>Search Results</h3>
+                <div ng-repeat="result in main.searchResults" ng-value="result"> 
+                        <div style="border-left: 2px solid black; padding-left: 1em; background-color: aliceblue">
+                                <a ng-href="#/speech/{{result.id}}" style="text-decoration:none; color:black">
+                                        <p style="font-weight:bold;">ID: {{result.id}}<p>
+                                        <p>Speaker: {{result.speaker}}, Affiliation: {{result.party}}, Date: {{result.date}}, Keywords: {{result.keywords}}<p>
+                                <a>
+                        </div>
+                <div>
+        </div>
 
 </div>
