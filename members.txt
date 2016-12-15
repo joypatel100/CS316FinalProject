@@ -1,0 +1,4 @@
+Gautam Hathi - scraping (data acquisition), visualizations
+Joy Patel - server/website backend, rest api, database configuration
+Seon Kang - website frontend
+Zoey Liaowang Zou - speech analytics, pairwise comparisons

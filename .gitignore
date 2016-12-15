@@ -74,5 +74,10 @@ target/
 #config
 config.py
 
+<<<<<<< HEAD
+#output logs
+uploaded.txt
+=======
 #swap files
 *.swp
+>>>>>>> 77476458715f699f164013b6e6e66707add4aee7
