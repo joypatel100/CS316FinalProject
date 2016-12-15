@@ -15,11 +15,13 @@ angular.module('projectApp')
                         'Karma'
                 ];
                 var self = this;
+                self.id = $routeParams.id;
                 // just for testing purposes
-                self.data = {'speaker': 'donald', 'party': 'Republican', 'date': 'Today', 'text': 'hi there!', 'speechid': '1', 'keywords': 'orange apple', 'sentiment': '1'};
+                // self.data = {'speaker': 'donald', 'party': 'Republican', 'date': 'Today', 'text': 'hi there!', 'speechid': '1', 'keywords': 'orange apple', 'sentiment': '1'};
                 DBService.getSpeech($routeParams.id).then(function(promise) {
                         console.log(promise);
                         self.data = promise.data;
+                        self.data.keywords = self.data.keywords.join(", ");
                 });
 
 

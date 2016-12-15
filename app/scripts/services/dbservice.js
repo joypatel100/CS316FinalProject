@@ -37,11 +37,11 @@ angular.module('projectApp')
 
         $http({ 
           method: 'GET',
-          url: Config.baseUrl 
+          url: Config.baseUrl + 'info?' + 'speech_id=' + id 
         }).then(function successCallback(response) {
           console.log(response);
           deferred.resolve({
-            data: response.data.data[0]
+            data: response.data
           });
         }, function errorCallback(response) {
           deferred.reject();
@@ -53,14 +53,30 @@ angular.module('projectApp')
       //@TODO query has speaker, keyword, party, speechid (optional)...return speeches filtered by these parameters
       service.getSearchResults = function(query) {
         var deferred = $q.defer();
-
+        console.log(query);
+        var params = '';
+        if (query.speechid && query.speechid !== '') {
+                params = 'speech_id=' + query.speechid;
+        }
+        else {
+                if (query.speaker) params += 'speaker=' + query.speaker;
+                if (query.speaker_party) {
+                        if (params.length > 0) params+='&';
+                        params += 'speaker_party=' + query.party;
+                }
+                if (query.keywords) {
+                        if (params.length > 0) params+='&';
+                        params += 'keywords=' + query.keywords;
+                }
+        }
+        console.log(params);
         $http({ 
           method: 'GET',
-          url: Config.baseUrl 
+          url: Config.baseUrl + 'search?' + params
         }).then(function successCallback(response) {
           console.log(response);
           deferred.resolve({
-            data: response.data.data[0]
+            data: response.data.data
           });
         }, function errorCallback(response) {
           deferred.reject();

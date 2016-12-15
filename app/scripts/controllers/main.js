@@ -20,26 +20,17 @@ angular.module('projectApp')
                 self.noParams = false;
 
                 self.search = function() {
-                        self.test = {};
-                        // just for testing purposes
-                        self.searchResults = [
-                                {'id':1, 'speaker': 'me', 'keywords': 'blah', 'date': 'now', 'party': 'repub' }, 
-                                {'id':2, 'speaker': 'me', 'keywords': 'blah', 'date': 'today', 'party': 'dem' }
-                        ]
-
-                        self.displayResults(self.searchResults);
-                        // end testing block
-                        if (!self.query || ( (!self.query.speaker) && (!self.query.keywords) && (!self.query.date) && (!self.query.id) )) {
+                        if (!self.query || ( (!self.query.speaker) && (!self.query.keywords) && (!self.query.date) && (!self.query.speechid) )) {
                                 self.noParams = true;
                         }
                         else {
                                 if (self.query.keywords) { // take out commas
                                         self.query.keywords = self.query.keywords.replace(/,/g, '');
                                 }
-                                console.log(self.query);
+                                //console.log(self.query);
                                 DBService.getSearchResults(self.query).then(function(promise) {
                                         self.showSearch = true;
-                                        console.log(promise);
+                                        // console.log(promise);
                                         self.displayResults(promise.data);
                                 });
                         }
@@ -50,6 +41,7 @@ angular.module('projectApp')
                 self.displayResults = function(data) {
                         self.noParams = false;
                         self.searchResults = data;
+                        console.log(self.searchResults);
                         self.showSearch = true;
                         //console.log(self.searchResults);
                 };
