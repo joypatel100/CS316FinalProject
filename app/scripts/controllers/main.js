@@ -17,6 +17,7 @@ angular.module('projectApp')
 
                 var self = this;
                 self.showSearch = false;
+                self.noParams = false;
 
                 self.search = function() {
                         self.test = {};
@@ -28,21 +29,29 @@ angular.module('projectApp')
 
                         self.displayResults(self.searchResults);
                         // end testing block
-                        //
-
-                        DBService.getSearchResults(self.search).then(function(promise) {
-                                self.showSearch = true;
-                                console.log(promise);
-                                self.displayResults(promise.data);
-                        });
+                        if (!self.query || ( (!self.query.speaker) && (!self.query.keywords) && (!self.query.date) && (!self.query.id) )) {
+                                self.noParams = true;
+                        }
+                        else {
+                                if (self.query.keywords) { // take out commas
+                                        self.query.keywords = self.query.keywords.replace(/,/g, '');
+                                }
+                                console.log(self.query);
+                                DBService.getSearchResults(self.query).then(function(promise) {
+                                        self.showSearch = true;
+                                        console.log(promise);
+                                        self.displayResults(promise.data);
+                                });
+                        }
                 };
 
                 // "Basic" analytics -- displays the plain text comparison score
 
                 self.displayResults = function(data) {
+                        self.noParams = false;
                         self.searchResults = data;
                         self.showSearch = true;
-                        console.log(self.searchResults);
+                        //console.log(self.searchResults);
                 };
 
         }]);

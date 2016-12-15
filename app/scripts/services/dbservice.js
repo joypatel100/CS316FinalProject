@@ -50,25 +50,6 @@ angular.module('projectApp')
         return deferred.promise;
       };
 
-      //@TODO data has speaker, party, date, speech content... add it to db
-        service.addSpeech = function(data) {
-        var deferred = $q.defer();
-
-        $http({ 
-          method: 'POST',
-          url: Config.baseUrl 
-        }).then(function successCallback(response) {
-          console.log(response);
-          deferred.resolve({
-            data: response.data.data[0]
-          });
-        }, function errorCallback(response) {
-          deferred.reject();
-          console.log(response);
-        });
-        return deferred.promise;
-      };
-
       //@TODO query has speaker, keyword, party, speechid (optional)...return speeches filtered by these parameters
       service.getSearchResults = function(query) {
         var deferred = $q.defer();
