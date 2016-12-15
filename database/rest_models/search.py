@@ -17,7 +17,7 @@ class Search(CustomDBResource):
             parser.add_argument(self.SPEAKER_PARTY, required=False, type=str, location="args")
             params = parser.parse_args()
             sql = '''
-                    SELECT Speech.date_said, Speech.keywords, Speaker.name, Speaker.party_name
+                    SELECT Speech.date_said, Speech.keywords, Speaker.name, Speaker.party_name, Speech.speech_id
                     FROM Speech JOIN Speaker
                     ON Speech.speaker_id=Speaker.speaker_id
                 '''
@@ -43,7 +43,7 @@ class Search(CustomDBResource):
                     sql += "Speaker.party_name=%s"
                     once = True
                     sql_params.append(params[self.SPEAKER_PARTY])
-                print sql
+                sql += " LIMIT 100"
                 suc, infos = self.query(sql,sql_params=tuple(sql_params),fetch=True)
             keywords = lambda k : k[1:-1].replace("'","").replace('"',"").split(',')
             return {
@@ -52,7 +52,8 @@ class Search(CustomDBResource):
                         "date_said" : str(info[0]),
                         "keywords" : keywords(info[1]),
                         "speaker_name" : info[2],
-                        "party_name" : info[3]
+                        "party_name" : info[3],
+                        "speech_id" : info[4]
                     } for info in infos]
             }
         except Exception as e:
