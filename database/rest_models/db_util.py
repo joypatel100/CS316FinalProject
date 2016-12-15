@@ -3,6 +3,8 @@ import psycopg2
 import psycopg2.extras
 from flask_restful import Resource, reqparse
 import datetime
+from flask import jsonify
+
 
 '''
 Interface
@@ -18,6 +20,34 @@ class DBResource(Resouce):
         pass
 
 '''
+
+class APIException(Exception):
+	status_code = 500
+
+	def __init__(self, message, status_code=500, payload=None):
+		Exception.__init__(self)
+		self.message = message
+		self.status_code = status_code
+		self.payload = payload
+
+	def to_dict(self):
+		ret = dict(self.payload) if self.payload!=None else {}
+		ret['message'] = self.message
+		return ret
+
+	def ret_json(self):
+		response = jsonify(self.to_dict())
+		response.status_code = self.status_code
+		return response
+
+class CustomDBResource(Resource):
+
+    def __init__(self, *arg):
+        self.db_util = arg[0]
+        return
+
+    def query(self, sql, sql_params=(), fetch=False):
+        return self.db_util.query(sql, sql_params=sql_params, fetch=fetch)
 
 class DBResource(Resource):
 

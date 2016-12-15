@@ -35,13 +35,9 @@ angular.module('projectApp')
                                 });
                         }
                 };
-
-                // "Basic" analytics -- displays the plain text comparison score
-
                 self.displayResults = function(data) {
                         self.noParams = false;
                         self.searchResults = data;
-                        console.log(self.searchResults);
                         self.showSearch = true;
                         //console.log(self.searchResults);
                 };

@@ -5,7 +5,7 @@ import argparse
 import os
 import psycopg2
 import psycopg2.extras
-from rest_models import DBUtil, District, Position, Speaker, Speech, SpeechAssociation, Users
+from rest_models import DBUtil, District, Position, Speaker, Speech, SpeechAssociation, Users, Info, Search
 
 class DBApi(Api):
     pass
@@ -27,10 +27,19 @@ def run_app():
     api.add_resource(Speech, '/speech', resource_class_args=(dbutil,))
     api.add_resource(SpeechAssociation, '/speechassociation', resource_class_args=(dbutil,))
     api.add_resource(Users, '/users', resource_class_args=(dbutil,))
+    api.add_resource(Info, '/info', resource_class_args=(dbutil,))
+    api.add_resource(Search, '/search', resource_class_args=(dbutil,))
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-p', type=int, required=True)
     args = parser.parse_args()
+
+    @app.after_request
+    def after_request(response):
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+        response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+        return response
     app.run(host='0.0.0.0', port=args.p, debug=True)
 
 if __name__ == '__main__':

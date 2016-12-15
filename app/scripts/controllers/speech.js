@@ -8,6 +8,7 @@
  * Controller of the projectApp
  */
 angular.module('projectApp')
+
         .controller('SpeechCtrl', ['$scope', 'DBService', '$routeParams', function($scope, DBService, $routeParams) {
                 this.awesomeThings = [
                         'HTML5 Boilerplate',
@@ -25,4 +26,4 @@ angular.module('projectApp')
                 });
 
 
-        }]);
+  }]);

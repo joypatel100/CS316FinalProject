@@ -5,3 +5,5 @@ from speaker import Speaker
 from speech import Speech
 from speechassociation import SpeechAssociation
 from users import Users
+from info import Info
+from search import Search
